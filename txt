@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Coin from './Coin';
 import Modal from './Modal';
-import ScrollToTop from './ScrollToTop';
 
 
 function App() {
@@ -11,40 +10,16 @@ function App() {
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState('');
   const [show, setShow] = useState(false);
-  const [coinInModal, setCoinInModal] = useState({});
-
-  const getCoins = async() => {
-    axios
-      .get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-      .then(res => {
-        setCoins(res.data);
-        console.log(res.data);
-      })
-      .catch(error => console.log(error))
-  }
-
+  // const [coinInModal, setCoinInModal] = useState({});
 
   useEffect(() => {
-    getCoins()
-
-    const interval = setInterval(()=>{
-      getCoins()
-     },10000)
-
-    return() => clearInterval(interval)
-      
+    axios
+      .get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=1&sparkline=false')
+      .then(res => {
+        setCoins(res.data);
+      })
+      .catch(error => console.log(error))
   }, []);
-
-
-
-  // useEffect(() => {
-  //   axios
-  //     .get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-  //     .then(res => {
-  //       setCoins(res.data);
-  //     })
-  //     .catch(error => console.log(error))
-  // }, []);
 
   const handleChange = e => {
     setSearch(e.target.value)
@@ -54,18 +29,9 @@ function App() {
     coin.name.toLowerCase().includes(search.toLowerCase())
     )
 
-  const showModal = (coin) => {
-    console.log("show");
+  const showModal = () => {
     setShow(true);
-    console.log(show);
-    setCoinInModal(coin);
-    console.log(coin.name);
-  }
-
-  const hideModal = (e) => {
-    console.log("dont show");
-    setShow(false);
-    console.log(show);
+    // setCoinInModal(coin);
   }
 
   return (
@@ -78,12 +44,12 @@ function App() {
         </form>
 
       </div>
-      <Modal show={show} coin={coinInModal} handelClose={e => hideModal()}>
+      <Modal show={show}>
           <p>Modal</p>
       </Modal>
       {filteredCoins.map(coin => {
         return(
-          <div key={coin.id} onClick={e => showModal(coin)}>
+          <div key={coin.id} onClick={showModal()}>
             <Coin key={coin.id} name={coin.name}
               image={coin.image}
               symbol={coin.symbol}
@@ -96,7 +62,7 @@ function App() {
           </div>
         )
       })}
-      <ScrollToTop />
+
     </div>
   );
 }

@@ -1,0 +1,145 @@
+.coin-container {
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s;
+    border-radius: 3px;
+}
+
+
+
+.coin-container:hover{
+    background-color: #202020;
+    cursor: pointer;
+}
+@media (min-width: 800px){
+    .coin-container{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+}
+
+.coin-row {
+    display: flex;
+    flex-direction: row;
+    justify-items: start;
+    align-items: center;
+    height:  80px;
+    border-bottom: 1px solid #d7d7d7;
+    max-width:  1020px;
+}
+
+.coin {
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+    min-width: 300px;
+}
+
+
+.coin h1 {
+    font-size: 16px;
+    width: 150px;
+
+}
+
+.coin img {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.coin-symbol {
+    text-transform: uppercase;
+}
+
+
+.coin-data {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (max-width: 400px) {
+    .coin-data {
+        font-size: 14px;
+        width: 170px;
+    }
+    .coin h1 {
+        font-size: 14px;
+    }
+    
+}
+
+.coin-price {
+    width: 110px;
+
+}
+
+.coin-volume {
+    width: 200px;
+}
+
+.coin-marketcap {
+    width: 250px;
+    text-align: right;
+}
+
+.coin-percent {
+    width: 80px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .coin-marketcap {
+        display: none;
+    }
+    .coin-percent {
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .coin-volume {
+        display: none;
+    }
+    .coin {
+        padding-right: 10px;
+        min-width: 200px;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .coin {
+        min-width: 175px;
+    }
+    .coin-symbol {
+        display: none;
+    }
+    .coin-percent{
+        width: 60px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .coin {
+        padding-right: 0;
+        min-width: 160px;
+    }
+    
+}
+
+@media only screen and (max-width: 370px) {
+    .coin {
+        padding-right: 0;
+        width: 165px;
+    }
+    
+}
+
+.red {
+    color: #f00606;
+}
+
+.green {
+    color: #11d811;
+}
